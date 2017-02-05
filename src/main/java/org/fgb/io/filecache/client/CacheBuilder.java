@@ -22,7 +22,7 @@ import org.fgb.io.filecache.util.FileNameGenerator;
 import org.fgb.io.filecache.util.FileSize;
 
 /**
- *
+ * Class <code>CacheBuilder</code> will write files to a directory on the file system.
  * 
  * @author Frederick Burkley
  *
@@ -151,21 +151,24 @@ public class CacheBuilder {
 				System.exit(0);
 			}
 			if (commandLine.hasOption("d")) {
-				directoryName = commandLine.getOptionValue("d");
+				directoryName = commandLine.getOptionValue("d").trim();
 			}
 			if (commandLine.hasOption("n")) {
-				numberOfLines = commandLine.getOptionValue("n");
+				numberOfLines = commandLine.getOptionValue("n").trim();
 			}
 			if (commandLine.hasOption("r")) {
 				System.out.println(_className + ": The command line option \"-r\" is not supported at this time.");
 			}
 			if (commandLine.hasOption("s")) {
-				fileSize = commandLine.getOptionValue("s");
+				fileSize = commandLine.getOptionValue("s").trim();
 			}
 		} catch (ParseException pe) {
 			_logger.log(Level.SEVERE, null, pe);
 			System.exit(1);
 		}
+
+		System.out.println(_className + ": directoryName = <" + directoryName + ">");
+		System.out.println(_className + ": fileSize = <" + fileSize + ">");
 
 		// Check for necessary command line args
 		if (directoryName == null) {
