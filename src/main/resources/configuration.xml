@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<Configuration xmlns="http://www.filecache.io.fgb.org"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.filecache.io.fgb.org Configuration.xsd">
+	<Directory>cache</Directory>
+	<Continuous>true</Continuous>
+</Configuration> 

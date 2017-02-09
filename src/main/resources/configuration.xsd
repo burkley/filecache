@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.filecache.io.fgb.org" xmlns="http://www.filecache.io.fgb.org"
+	elementFormDefault="qualified">
+
+	<xs:complexType name="ConfigurationType">
+		<xs:sequence>
+			<xs:element name="Directory" type="xs:string" />
+			<xs:element name="Continuous" type="xs:boolean" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="Configuration" type="ConfigurationType" />
+
+</xs:schema> 
