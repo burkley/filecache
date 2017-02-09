@@ -7,6 +7,9 @@
   <version>1.0-SNAPSHOT</version>
   <name>filecache</name>
   <url>http://maven.apache.org</url>
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
@@ -23,6 +26,11 @@
       <artifactId>commons-io</artifactId>
       <version>2.5</version>
     </dependency>
+    <dependency>
+      <groupId>org.codehaus.mojo</groupId>
+      <artifactId>jaxb2-maven-plugin</artifactId>
+      <version>2.2</version>
+    </dependency>
   </dependencies>
   <build>
     <plugins>
@@ -35,6 +43,31 @@
           <target>1.8</target>
         </configuration>
       </plugin>
+
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>jaxb2-maven-plugin</artifactId>
+        <version>2.2</version>
+        <executions>
+          <execution>
+            <id>xjc</id>
+            <goals>
+              <goal>xjc</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <!--<xjbSources>
+            <xjbSource>src/main/resources/global.xjb</xjbSource>
+          </xjbSources>-->
+          <sources>
+            <source>src/main/resources/configuration.xsd</source>
+          </sources>
+        </configuration>
+      </plugin>
+
+
+
     </plugins>
   </build>
 </project>
