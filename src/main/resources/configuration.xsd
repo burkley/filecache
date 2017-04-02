@@ -5,10 +5,104 @@
 
 	<xs:complexType name="ConfigurationType">
 		<xs:sequence>
-			<xs:element name="Directory" type="xs:string" />
-			<xs:element name="Continuous" type="xs:boolean" />
+			<xs:element name="Directory" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>
+						The name of the directory where the files will be
+						created.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:choice>
+				<xs:annotation>
+					<xs:documentation>Two fundamental file creation modes, either by
+						the size of the file (FileSizeConfiguration) or by the number of
+						lines in the file (LineCountConfiguration).
+					</xs:documentation>
+				</xs:annotation>
+				<xs:element ref="FileSizeConfiguration" />
+				<xs:element ref="LineCountConfiguration" />
+			</xs:choice>
+			<xs:element name="Continuous" type="xs:boolean" minOccurs="0" />
+			<xs:element name="SleepTime" type="xs:int" minOccurs="0" />
 		</xs:sequence>
 	</xs:complexType>
 	<xs:element name="Configuration" type="ConfigurationType" />
 
-</xs:schema> 
+	<xs:complexType name="FileSizeConfigurationType">
+	</xs:complexType>
+	<xs:element name="FileSizeConfiguration" type="FileSizeConfigurationType">
+	</xs:element>
+
+	<!-- File creation mode characterized by the number of lines in the file. -->
+	<xs:complexType name="LineCountConfigurationType">
+		<xs:annotation>
+			<xs:documentation>File creation mode characterized by the number of
+				lines in the file.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="LineCount" type="AllowableLineCountsType"></xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="LineCountConfiguration" type="LineCountConfigurationType">
+		<xs:annotation>
+			<xs:documentation>File creation mode characterized by the number of
+				lines in the file.
+			</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+
+	<!-- The set of allowable line counts. This is the number of lines that 
+		will be in the file (that is created). -->
+	<xs:simpleType name="AllowableLineCountsType">
+		<xs:annotation>
+			<xs:documentation>The set of allowable line counts. This is the
+				number of lines that will be in the file (that is created).
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:int">
+			<xs:enumeration value="512"></xs:enumeration>
+			<xs:enumeration value="1024"></xs:enumeration>
+			<xs:enumeration value="2048"></xs:enumeration>
+			<xs:enumeration value="4096"></xs:enumeration>
+			<xs:enumeration value="8192"></xs:enumeration>
+			<xs:enumeration value="16384"></xs:enumeration>
+			<xs:enumeration value="32768"></xs:enumeration>
+			<xs:enumeration value="65536"></xs:enumeration>
+			<xs:enumeration value="131072"></xs:enumeration>
+			<xs:enumeration value="262144"></xs:enumeration>
+			<xs:enumeration value="524288"></xs:enumeration>
+			<xs:enumeration value="1048576"></xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<!-- The set of allowable units. -->
+	<xs:simpleType name="AllowableUnitsType">
+		<xs:annotation>
+			<xs:documentation>The set of allowable units.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="k">
+				<xs:annotation>
+					<xs:documentation>Kilobyte</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="K">
+				<xs:annotation>
+					<xs:documentation>Kilobyte</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="m">
+				<xs:annotation>
+					<xs:documentation>Megabyte</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="M">
+				<xs:annotation>
+					<xs:documentation>Megabyte</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

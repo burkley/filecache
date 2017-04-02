@@ -4,5 +4,7 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.filecache.io.fgb.org Configuration.xsd">
 	<Directory>cache</Directory>
-	<Continuous>true</Continuous>
-</Configuration> 
+	<LineCountConfiguration>
+		<LineCount>1024</LineCount>
+	</LineCountConfiguration>
+</Configuration>
