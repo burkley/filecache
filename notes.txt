@@ -1,0 +1,13 @@
+Configuration
+
+Directory to write to			String
+
+File parameters						Either NumLines or Size must be specified
+	Number of lines in file		Int
+	or
+	Size of file			Int
+
+	Random				Boolean		If Continuous is true
+
+Continuous				Boolean
+Sleep time				Int		If Continuous is true
